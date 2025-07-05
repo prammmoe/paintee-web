@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import { ChevronRight, Palette, Sparkles, Users, Download, Play, Star } from 'lucide-react';
+import { ChevronRight, Palette, Sparkles, Users, Download, Play } from 'lucide-react';
 
 export default function Home() {
   return (
@@ -79,25 +79,6 @@ export default function Home() {
                 <Download className="w-5 h-5" />
                 <span>Download Free</span>
               </button>
-            </div>
-
-            {/* Stats */}
-            <div className="flex flex-wrap justify-center gap-8 mt-16 pt-8 border-t border-gray-800">
-              <div className="text-center">
-                <div className="text-3xl font-bold text-purple-400">500K+</div>
-                <div className="text-sm text-gray-400">Active Artists</div>
-              </div>
-              <div className="text-center">
-                <div className="text-3xl font-bold text-pink-400">2M+</div>
-                <div className="text-sm text-gray-400">Artworks Created</div>
-              </div>
-              <div className="text-center">
-                <div className="flex items-center justify-center space-x-1 text-3xl font-bold text-yellow-400">
-                  <Star className="w-6 h-6 fill-current" />
-                  <span>4.9</span>
-                </div>
-                <div className="text-sm text-gray-400">App Store Rating</div>
-              </div>
             </div>
           </div>
         </div>
