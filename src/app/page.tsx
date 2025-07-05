@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 import { ChevronRight, Palette, Sparkles, Users, Download, Play, Star } from 'lucide-react';
 
 export default function Home() {
@@ -9,8 +10,14 @@ export default function Home() {
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
             <span className="text-2xl font-bold bg-clip-text text-transparent">
-              <img src="/logopaintee.png" alt="Paintee Logo" className="h-12" />
-            </span>
+            <Image
+              src="/logopaintee.png"
+              alt="Paintee Logo"
+              width={48}
+              height={48}
+              className="h-12 w-auto"
+            />
+          </span>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -130,7 +137,7 @@ export default function Home() {
               </div>
               <h3 className="text-2xl font-bold mb-4 text-white">Beginner-Friendly</h3>
               <p className="text-gray-400 leading-relaxed">
-                Paintee is made for everyone. Whether you're a kid or an adult, painting on your face has never been this easy.
+                Paintee is made for everyone. Whether you&apos;re a kid or an adult, painting on your face has never been this easy.
               </p>
             </div>
 
@@ -189,8 +196,14 @@ export default function Home() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-3">
             <span className="text-2xl font-bold bg-clip-text text-transparent">
-              <img src="/logopaintee.png" alt="Paintee Logo" className="h-12" />
-            </span>
+            <Image
+              src="/logopaintee.png"
+              alt="Paintee Logo"
+              width={48}
+              height={48}
+              className="h-12 w-auto"
+            />
+          </span>
             </div>
             
             <div className="flex items-center space-x-6">
