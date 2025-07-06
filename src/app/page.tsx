@@ -1,15 +1,35 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Image from 'next/image';
-import { ChevronRight, Palette, Sparkles, Users, Download, Play } from 'lucide-react';
+import { ChevronRight, Download, Play, Moon, Sun } from 'lucide-react';
+import { Nunito } from 'next/font/google';
+
+const nunito = Nunito({ 
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+});
 
 export default function Home() {
+  const [isDark, setIsDark] = useState(false);
+
+  const toggleDarkMode = () => {
+    setIsDark(!isDark);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white">
+    <div className={`min-h-screen transition-colors duration-300 ${nunito.className} ${
+      isDark 
+        ? 'bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950 text-white' 
+        : 'bg-gradient-to-br from-gray-100 to-gray-200 text-gray-900'
+    }`}>
       {/* Navigation */}
-      <nav className="relative z-50 px-6 py-6">
+      <nav className={`relative z-50 px-6 py-6 transition-colors duration-300 ${
+        isDark ? 'bg-gray-900/80 backdrop-blur-sm' : 'bg-white/80 backdrop-blur-sm'
+      }`}>
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center space-x-3">
-            <span className="text-2xl font-bold bg-clip-text text-transparent">
             <Image
               src="/logopaintee.png"
               alt="Paintee Logo"
@@ -17,118 +37,205 @@ export default function Home() {
               height={48}
               className="h-12 w-auto"
             />
-          </span>
           </div>
           
           <div className="hidden md:flex items-center space-x-8">
-            <a href="#home" className="text-gray-300 hover:text-white transition-colors">Home</a>
-            <a href="#features" className="text-gray-300 hover:text-white transition-colors">Features</a>
-            <a href="#about" className="text-gray-300 hover:text-white transition-colors">About</a>
-            <a href="#contact" className="text-gray-300 hover:text-white transition-colors">Contact</a>
+            <a href="#home" className={`transition-colors ${
+              isDark ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+            }`}>Home</a>
+            <a href="#features" className={`transition-colors ${
+              isDark ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+            }`}>Features</a>
+            <a href="#about" className={`transition-colors ${
+              isDark ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+            }`}>About</a>
+            <a href="#contact" className={`transition-colors ${
+              isDark ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'
+            }`}>Contact</a>
           </div>
           
-          <button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-6 py-3 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center space-x-2">
-            <Download className="w-4 h-4" />
-            <span>Download on the App Store</span>
-          </button>
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={toggleDarkMode}
+              className={`p-2 rounded-full transition-all duration-300 ${
+                isDark 
+                  ? 'bg-gray-800 hover:bg-gray-700 text-yellow-400' 
+                  : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
+              }`}
+            >
+              {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+            </button>
+            
+            <button className={`px-6 py-3 rounded-full font-medium transition-all duration-300 transform hover:scale-105 ${
+              isDark 
+                ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white' 
+                : 'bg-gray-900 hover:bg-gray-800 text-white'
+            }`}>
+              Download App
+            </button>
+          </div>
         </div>
       </nav>
 
       {/* Hero Section */}
       <section className="relative px-6 py-20 overflow-hidden">
-        {/* Background Effects */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-20 w-72 h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-20 w-96 h-96 bg-pink-500/20 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-2xl"></div>
-        </div>
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content */}
+            <div className="space-y-8">
+              <div className="space-y-6">
+                <h1 className="text-5xl md:text-6xl font-black leading-tight">
+                  <span className={`block ${isDark ? 'text-white' : 'text-gray-900'}`}>DISCOVER</span>
+                  <span className={`block ${isDark ? 'text-white' : 'text-gray-900'}`}>YOUR</span>
+                  <span className={`block ${isDark ? 'text-white' : 'text-gray-900'}`}>FACE PAINTING</span>
+                </h1>
 
-        <div className="relative z-10 max-w-6xl mx-auto">
-          {/* Hero Content */}
-          <div className="text-center space-y-8">
-            <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-purple-500/20 to-pink-500/20 backdrop-blur-sm border border-purple-500/30 rounded-full px-6 py-3">
-              <Sparkles className="w-5 h-5 text-purple-400" />
-              <span className="text-sm font-medium text-purple-300">Introducing Paintee</span>
+                <p className={`text-lg max-w-xl leading-relaxed ${
+                  isDark ? 'text-gray-400' : 'text-gray-600'
+                }`}>
+                  We have the largest selection of unique face painting designs. 
+                  Try our easy and quick AR face painting app for any 
+                  creative expression. 24-hour support is always happy 
+                  to answer all your questions.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <button className={`group px-8 py-4 rounded-full font-medium transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-3 ${
+                    isDark 
+                      ? 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white' 
+                      : 'bg-gray-900 hover:bg-gray-800 text-white'
+                  }`}>
+                    <span>Get Started</span>
+                    <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </div>
+              </div>
+
+              <div className="pt-8">
+                <p className={`text-sm mb-4 ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                  The mobile app is available now
+                </p>
+                <div className="flex items-center space-x-4">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center cursor-pointer transition-colors ${
+                    isDark 
+                      ? 'bg-gray-800 hover:bg-gray-700 text-white' 
+                      : 'bg-gray-900 hover:bg-gray-800 text-white'
+                  }`}>
+                    <Play className="w-6 h-6" />
+                  </div>
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center cursor-pointer transition-colors ${
+                    isDark 
+                      ? 'bg-gray-800 hover:bg-gray-700 text-white' 
+                      : 'bg-gray-900 hover:bg-gray-800 text-white'
+                  }`}>
+                    <Download className="w-6 h-6" />
+                  </div>
+                </div>
+              </div>
             </div>
 
-            <h1 className="text-6xl md:text-8xl font-bold leading-tight">
-              <span className="block text-white">Discover</span>
-              <span className="block bg-gradient-to-r from-purple-400 via-pink-400 to-purple-400 bg-clip-text text-transparent">
-                Paintee:
-              </span>
-              <span className="block text-white text-5xl md:text-6xl mt-4">
-                Face Painting App for {''}
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  Everyone
-                </span>
-              </span>
-            </h1>
+            {/* Right Content - Mobile Phone Display */}
+            <div className="relative flex justify-center items-center">
+              <div className="relative">
+                {/* Main Phone Display */}
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
+                  <div className="relative shadow-2xl transform transition-all duration-500 group-hover:scale-105">
+                    <Image
+                      src="/home.png"
+                      alt="Home Screen"
+                      width={433}
+                      height={886}
+                      className="rounded-3xl shadow-2xl"
+                    />
+                  </div>
+                </div>
 
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-            An intuitive AR face painting companion that helps you create symmetrical and stunning designs — all by yourself, in real time.
-            </p>
+                {/* Overlapping Phone Display */}
+                <div className="absolute -top-8 -right-8 group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-400 to-purple-400 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity duration-500"></div>
+                  <div className="relative shadow-xl transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                    <Image
+                      src="/design.png"
+                      alt="Design Screen"
+                      width={217}
+                      height={443}
+                      className="rounded-2xl shadow-xl"
+                    />
+                  </div>
+                </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-12">
-              <button className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center space-x-3">
-                <Play className="w-5 h-5" />
-                <span>Start Creating</span>
-                <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-              
-              <button className="group bg-[#27314E]/30 hover:bg-[#27314E]/50 backdrop-blur-sm border border-[#27314E]/50 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center space-x-3">
-                <Download className="w-5 h-5" />
-                <span>Download Free</span>
-              </button>
+                {/* Decorative Elements */}
+                <div className="absolute -bottom-6 -left-6 w-20 h-20 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full opacity-20 animate-pulse"></div>
+                <div className="absolute top-16 -left-4 w-12 h-12 bg-gradient-to-r from-pink-400 to-purple-400 rounded-full opacity-30 animate-bounce"></div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="relative px-6 py-20">
+      <section className={`relative px-6 py-20 transition-colors duration-300 ${
+        isDark ? 'bg-gray-900' : 'bg-white'
+      }`}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center space-y-4 mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold">
+            <h2 className={`text-4xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-gray-900'}`}>
               Why artists choose{' '}
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Paintee
               </span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            <p className={`text-xl max-w-3xl mx-auto ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
               Powerful features designed to unleash your creativity and bring your artistic vision to life.
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {/* Feature 1 */}
-            <div className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
-                <Palette className="w-6 h-6 text-white" />
+            <div className={`group relative rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+              isDark 
+                ? 'bg-gradient-to-br from-gray-800/50 to-gray-700/50 border border-gray-600/50 hover:border-purple-500/50' 
+                : 'bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200'
+            }`}>
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-6 h-6 bg-white rounded-sm"></div>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Face-Aligned Guides</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <h3 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Face-Aligned Guides
+              </h3>
+              <p className={`leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                 Get perfectly placed guide dots and outlines based on your face. No more guessing — just follow and paint.
               </p>
             </div>
 
-            {/* Feature 2 */}
-            <div className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
-                <Users className="w-6 h-6 text-white" />
+            <div className={`group relative rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+              isDark 
+                ? 'bg-gradient-to-br from-gray-800/50 to-gray-700/50 border border-gray-600/50 hover:border-purple-500/50' 
+                : 'bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200'
+            }`}>
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-6 h-6 bg-white rounded-full"></div>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Beginner-Friendly</h3>
-              <p className="text-gray-400 leading-relaxed">
-                Paintee is made for everyone. Whether you&apos;re a kid or an adult, painting on your face has never been this easy.
+              <h3 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Beginner-Friendly
+              </h3>
+              <p className={`leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
+                Paintee is made for everyone. Whether you're a kid or an adult, painting on your face has never been this easy.
               </p>
             </div>
 
-            {/* Feature 3 */}
-            <div className="group relative bg-gradient-to-br from-gray-900/50 to-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-2xl p-8 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105">
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6">
-                <Sparkles className="w-6 h-6 text-white" />
+            <div className={`group relative rounded-2xl p-8 hover:shadow-xl transition-all duration-300 transform hover:scale-105 ${
+              isDark 
+                ? 'bg-gradient-to-br from-gray-800/50 to-gray-700/50 border border-gray-600/50 hover:border-purple-500/50' 
+                : 'bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-200'
+            }`}>
+              <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-pink-600 rounded-xl flex items-center justify-center mb-6">
+                <div className="w-6 h-6 bg-white rounded-lg"></div>
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white">Smart AR Technology</h3>
-              <p className="text-gray-400 leading-relaxed">
+              <h3 className={`text-2xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-900'}`}>
+                Smart AR Technology
+              </h3>
+              <p className={`leading-relaxed ${isDark ? 'text-gray-400' : 'text-gray-600'}`}>
                 Powered by AR and face tracking, Paintee ensures your designs stay in place as you move — just like magic.
               </p>
             </div>
@@ -136,55 +243,20 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="relative px-6 py-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="relative bg-gradient-to-r from-[#27314E]/20 to-purple-900/20 backdrop-blur-sm border border-[#27314E]/30 rounded-3xl p-12 overflow-hidden">
-            {/* Background gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600/10 to-pink-600/10 opacity-50"></div>
-            
-            <div className="relative z-10 space-y-6">
-              <h2 className="text-4xl md:text-5xl font-bold">
-                Ready to start your{' '}
-                <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                  creative journey?
-                </span>
-              </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              Join thousands who’ve transformed their face painting game. Download Paintee and start painting like a pro — effortlessly.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-8">
-                <button className="group bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center space-x-3">
-                  <Download className="w-5 h-5" />
-                  <span>Download on the App Store</span>
-                  <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </button>
-                
-                <button className="group bg-[#27314E]/30 hover:bg-[#27314E]/50 backdrop-blur-sm border border-[#27314E]/50 px-8 py-4 rounded-full font-semibold transition-all duration-300 transform hover:scale-105 flex items-center space-x-3">
-                  <Play className="w-5 h-5" />
-                  <span>Watch Demo</span>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="relative px-6 py-12 border-t border-gray-800">
+      <footer className={`relative px-6 py-12 transition-colors duration-300 ${
+        isDark ? 'bg-gray-950 border-t border-gray-800' : 'bg-gray-900'
+      } text-white`}>
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-3">
-            <span className="text-2xl font-bold bg-clip-text text-transparent">
-            <Image
-              src="/logopaintee.png"
-              alt="Paintee Logo"
-              width={48}
-              height={48}
-              className="h-12 w-auto"
-            />
-          </span>
+              <Image
+                src="/logopaintee.png"
+                alt="Paintee Logo"
+                width={48}
+                height={48}
+                className="h-12 w-auto"
+              />
             </div>
             
             <div className="flex items-center space-x-6">
