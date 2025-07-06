@@ -95,8 +95,7 @@ export default function Home() {
                 }`}>
                   We have the largest selection of unique face painting designs. 
                   Try our easy and quick AR face painting app for any 
-                  creative expression. 24-hour support is always happy 
-                  to answer all your questions.
+                  creative expression.
                 </p>
 
                 <div className="flex flex-col sm:flex-row gap-4 pt-4">
