@@ -124,7 +124,7 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-r from-purple-400 to-pink-400 rounded-3xl blur-xl opacity-20 group-hover:opacity-30 transition-opacity duration-500"></div>
                   <div className="relative shadow-2xl transform transition-all duration-500 group-hover:scale-105">
                     <Image
-                      src="/Home.png"
+                      src="/homescreen.png"
                       alt="Home Screen"
                       width={433}
                       height={886}
@@ -137,7 +137,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
